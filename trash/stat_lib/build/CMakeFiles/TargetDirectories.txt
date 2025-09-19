@@ -1,0 +1,3 @@
+/home/alexey/C++/scanner/stat_lib/build/CMakeFiles/StatLib.dir
+/home/alexey/C++/scanner/stat_lib/build/CMakeFiles/edit_cache.dir
+/home/alexey/C++/scanner/stat_lib/build/CMakeFiles/rebuild_cache.dir

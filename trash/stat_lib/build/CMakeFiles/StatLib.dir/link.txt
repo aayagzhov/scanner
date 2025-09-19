@@ -1,0 +1,2 @@
+/usr/bin/ar qc libStatLib.a CMakeFiles/StatLib.dir/printer.cpp.o
+/usr/bin/ranlib libStatLib.a
