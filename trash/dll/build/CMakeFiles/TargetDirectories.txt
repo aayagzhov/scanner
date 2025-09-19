@@ -1,3 +1,0 @@
-/home/alexey/C++/scanner/dll/build/CMakeFiles/DllLib.dir
-/home/alexey/C++/scanner/dll/build/CMakeFiles/edit_cache.dir
-/home/alexey/C++/scanner/dll/build/CMakeFiles/rebuild_cache.dir

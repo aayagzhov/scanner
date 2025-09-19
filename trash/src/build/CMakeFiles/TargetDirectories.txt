@@ -1,3 +1,0 @@
-/home/alexey/C++/scanner/src/build/CMakeFiles/hello.dir
-/home/alexey/C++/scanner/src/build/CMakeFiles/edit_cache.dir
-/home/alexey/C++/scanner/src/build/CMakeFiles/rebuild_cache.dir
