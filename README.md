@@ -1,1 +1,4 @@
-# scanner
+# Scanner
+## build
+`./build.sh`
+## run
