@@ -1,18 +1,53 @@
 #pragma once
 
+#include "core.h"
+
+#include <array>
 #include <string>
 #include <fstream>
+
+#include <iostream>
+#include <cassert>
 
 namespace scanner {
 
 /// @brief Find MD-5 hash for input file
 class Hasher final {
-    public:
-        std::string get_hash(const std::string &file) const {
+public:
+    using Message = std::string;
 
+    std::pair<Hash, Message> get_hash(const std::string &file_path) const {
+        std::ifstream file(file_path, std::ios::in | std::ios::binary | std::ios::ate);
+        if (!file) {
+            std::cout << file_path << std::endl;
+            assert(false && "Can't open input file");
+            return {"", "Can't open input file"};
         }
 
-    private:
+        long fileSize = file.tellg();
+        std::cout << "File size: " << fileSize << " bytes" << std::endl;
+
+        file.seekg(0, std::ios::beg);
+        static const int BUFF_SIZE = 64;
+        std::array<char, BUFF_SIZE> buffer;
+
+        do {
+            file.read(buffer.data(), BUFF_SIZE);
+            for (size_t i{0}; i < file.gcount(); ++i) {
+                std::cout << buffer[i];
+            }
+            std::cout << std::endl;
+        } while(file);
+
+        if(file.eof()) {
+            std::cout << "OK" << std::endl;
+        } else {
+            std::cout << "MISTAKE" << std::endl;
+        }
+        return {"", "Hash not found"};
+    }
+
+private:
 };
 
 //gcount
