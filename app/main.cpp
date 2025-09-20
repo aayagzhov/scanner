@@ -44,10 +44,9 @@ int main(int argc, char* argv[]) {
     scanner::Scanner scanner;
     scanner.set_base(base_file);
     scanner.set_log(log_file);
-    scanner.set_folder(folder);
-    scanner.scan();
+    scanner.scan(folder);
 
     return 0;
 }
 
-//scanner.exe --base base.cvs --log report.log --path c:\folder
+//./build/app/app --base file.csv --log log.log  --path ./r

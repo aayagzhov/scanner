@@ -1,0 +1,15 @@
+Running main() from /home/alexey/C++/scanner/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 3 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 3 tests from Hasher
+[ RUN      ] Hasher.txt
+[       OK ] Hasher.txt (0 ms)
+[ RUN      ] Hasher.webp
+[       OK ] Hasher.webp (0 ms)
+[ RUN      ] Hasher.png
+[       OK ] Hasher.png (3 ms)
+[----------] 3 tests from Hasher (4 ms total)
+
+[----------] Global test environment tear-down
+[==========] 3 tests from 1 test suite ran. (4 ms total)
+[  PASSED  ] 3 tests.
