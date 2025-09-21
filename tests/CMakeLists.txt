@@ -11,20 +11,21 @@ file(GLOB_RECURSE SRC_FILES
 
 add_executable(tests ${SRC_FILES})
 
-target_include_directories(tests
-    PRIVATE
-        ${CMAKE_SOURCE_DIR}/lib/include
-        ${gtest_SOURCE_DIR}/include
-        ${gtest_BINARY_DIR}/include
+#target_include_directories(tests
+#    PRIVATE
+#        ${CMAKE_SOURCE_DIR}/lib/include
+#        ${gtest_SOURCE_DIR}/include
+#        ${gtest_BINARY_DIR}/include
+#)
+
+target_link_libraries(tests PRIVATE ScannerLib gtest_main)
+
+add_custom_command(TARGET tests POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        $<TARGET_FILE:ScannerLib>
+        $<TARGET_FILE_DIR:tests>
 )
+
 
 include(GoogleTest)
 gtest_discover_tests(tests)
-
-if (CMAKE_SYSTEM_NAME MATCHES "^MINGW")
-    set(SYSTEM_LIBS -lstdc++)
-else()
-    set(SYSTEM_LIBS)
-endif()
-
-target_link_libraries(tests PRIVATE ScannerLib gtest_main ${SYSTEM_LIBS})
