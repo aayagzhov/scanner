@@ -60,16 +60,16 @@ public:
         std::ostringstream result;
         result << std::hex << std::setfill('0');
 
-        auto append_le32 = [&result](uint32_t val) {
+        auto append_hash = [&result](uint32_t val) {
             for (int i = 0; i < 4; ++i) {
                 result << std::setw(2) << ((val >> (8 * i)) & 0xff);
             }
         };
 
-        append_le32(a);
-        append_le32(b);
-        append_le32(c);
-        append_le32(d);
+        append_hash(a);
+        append_hash(b);
+        append_hash(c);
+        append_hash(d);
 
         return result.str();
     }
