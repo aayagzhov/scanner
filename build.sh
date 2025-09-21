@@ -2,4 +2,4 @@ rm -R build;
 mkdir build;
 cd build;
 cmake ..;
-cmake --build .;
+cmake --build . -j8;

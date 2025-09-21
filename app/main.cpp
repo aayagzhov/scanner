@@ -40,13 +40,13 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-
     scanner::Scanner scanner;
     scanner.set_base(base_file);
     scanner.set_log(log_file);
     scanner.scan(folder);
+    scanner.print_stat();
 
     return 0;
 }
 
-//./build/app/app --base file.csv --log log.log  --path ./r
+//./build/app/app --base tests/data/base.csv --log log.log  --path ./

@@ -3,85 +3,63 @@
 #include "base.h"
 #include "export.h"
 #include "core.h"
+#include "thread_pool.h"
+#include "hasher.h"
+#include "logger.h"
 
+#include <filesystem>
 #include <string>
-#include <iostream>
-#include <iomanip>
+
+namespace fs = std::filesystem;
 
 namespace scanner {
 
-struct Stat {
-    size_t processed{0};
-    size_t found{0};
-    size_t mistakes{0};
-    double time{0.};
-};
-
-std::ostream& operator<<(std::ostream& os, const Stat& stat) {
-    const int label_width = 15;
-    const int value_width = 10;
-
-    os << std::left << std::setw(label_width) << "Параметр    | " 
-       << std::left << std::setw(value_width) << "Значение" << "\n";
-    os << std::string(label_width + value_width, '-') << "\n";
-
-    // Добавляем пробелы после текста для выравнивания
-    os << std::left << std::setw(label_width) << "Обработано  | " 
-       << std::left << std::setw(value_width) << stat.processed << "\n";
-
-    os << std::left << std::setw(label_width) << "Найдено     | " 
-       << std::left << std::setw(value_width) << stat.found << "\n";
-
-    os << std::left << std::setw(label_width) << "Ошибки      | " 
-       << std::left << std::setw(value_width) << stat.mistakes << "\n";
-
-    os << std::left << std::setw(label_width) << "Время (сек) | " 
-       << std::left << std::setw(value_width) << std::fixed
-       << std::setprecision(3) << stat.time << "\n";
-
-    return os;
-}
-
 class Scanner final {
 public:
-    Scanner() {};
+   Scanner() {};
 
-    void set_base(const std::string &base_fale) {
+   void set_base(const std::string &base_fale) {
+      base.load(base_fale);
+   }
 
-    }
+   void set_log(const std::string &log_file) {
+      logger.set_output_file(log_file);
+   }
 
-    void set_log(const std::string &log_file) {
+   void scan(const std::string &folder_path) {
+      ThreadPool thread_pool;
+      try {
+         for (const auto& entry : fs::recursive_directory_iterator(folder_path)) {
+            if (entry.is_regular_file()) {
+               std::string file_path = entry.path().string();
+               thread_pool.add_task([this, file_path] {
+                  this->process_file(file_path);
+               });
+            }
+         }
+      } catch (const fs::filesystem_error& e) {
+         std::cerr << "Ошибка файловой системы: " << e.what() << std::endl;
+      }
+   }
 
-    }
-
-    void scan(const std::string &folder_path) const {
-        Stat stat;
-
-   //  fs::path dir_path = "/path/to/directory";
-   //  std::vector<std::future<void>> futures;
-
-   //  try {
-   //      for (const auto& entry : fs::recursive_directory_iterator(dir_path)) {
-   //          if (fs::is_regular_file(entry.status())) {
-   //              // Асинхронная обработка файла
-   //              futures.push_back(std::async(std::launch::async, process_file, entry.path()));
-   //          }
-   //      }
-
-   //      // Дождаться завершения всех потоков
-   //      for (auto& f : futures) {
-   //          f.get();
-   //      }
-
-   //  } catch (const fs::filesystem_error& e) {
-   //      std::cerr << "Ошибка файловой системы: " << e.what() << std::endl;
-   //  }
-
-        std::cout << stat << std::endl;
-    }
+   void print_stat() const {
+      std::cout << stat << std::endl;
+   }
 
 private:
+   void process_file(const std::string &file) {
+      auto [hash, verdict] = hasher.find_hash(file);
+      if (base.find_hash(hash)) {
+         verdict = base.get_verdict(hash);
+      }
+      //stat + stat
+      logger.log(file, hash, verdict);
+   }
 
+   Base base;
+   Stat stat;
+   Logger logger;
+   Hasher hasher;
 };
 
 } // namespace scanner
