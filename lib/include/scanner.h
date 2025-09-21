@@ -6,6 +6,7 @@
 #include "thread_pool.h"
 #include "hasher.h"
 #include "logger.h"
+#include <chrono>
 
 #include <filesystem>
 #include <string>
@@ -27,6 +28,8 @@ public:
    }
 
    void scan(const std::string &folder_path) {
+      auto start = std::chrono::steady_clock::now();
+      {
       ThreadPool thread_pool;
       try {
          for (const auto& entry : fs::recursive_directory_iterator(folder_path)) {
@@ -40,6 +43,10 @@ public:
       } catch (const fs::filesystem_error& e) {
          std::cerr << "Ошибка файловой системы: " << e.what() << std::endl;
       }
+      }
+      auto end = std::chrono::steady_clock::now();
+      auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+      stat.time = duration.count();
    }
 
    void print_stat() const {

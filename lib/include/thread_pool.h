@@ -36,10 +36,6 @@ public:
         return res;
     };
 
-    size_t size() {
-        return tasks.size();
-    }
-
     ~ThreadPool();
 
 private:

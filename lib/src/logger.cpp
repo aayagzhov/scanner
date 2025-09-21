@@ -8,7 +8,7 @@ bool Logger::set_output_file(const std::string &file_path) {
     if (file.is_open()) {
         return false;
     }
-    file.open(file_path, std::ios::out | std::ios::app);
+    file.open(file_path, std::ios::out | std::ios::trunc);
     return file.is_open();
 }
 
