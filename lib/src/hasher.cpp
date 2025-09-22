@@ -21,7 +21,7 @@ std::pair<Hash, Message> Hasher::find_hash(const std::string &file_path) {
         file.read(reinterpret_cast<char*>(buffer.data()), BUFF_SIZE);
         uint64_t len = file.gcount();
         hashed_memory += len;
-        md5.update(buffer.data(), file.gcount());
+        md5.update(buffer.data(), len);
     } while(file);
 
     if(!file.eof()) {
