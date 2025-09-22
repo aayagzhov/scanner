@@ -1,5 +1,5 @@
 rm -R build;
 mkdir build;
 cd build;
-cmake ..;
-cmake --build . -j8;
+cmake -G "Ninja" ..;
+cmake --build .;
