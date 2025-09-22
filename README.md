@@ -43,15 +43,15 @@ Example for Linux;
 ```
 Scan report
 -----------
-Root path:        .
-Database file:    tests/data/base.csv
-Log file:         log.log
+Root path:        /home/user/scanner/.
+Database file:    /home/user/scanner/tests/data/base.csv
+Log file:         /home/user/scanner/log.log
 
-Total files scanned:           724
+Total files scanned:           740
 Malicious files found:         1
 Files failed to analyze:       0
-Elapsed time:                  00:00:00.286
-Total data hashed:             830 KB 
+Elapsed time:                  00:00:00.000
+Total data hashed:             2283 KB
 ```
 ## Running test
 Example for Windows;
