@@ -10,7 +10,11 @@ This project is a file scanning utility that detects "malicious" files in a spec
 - **Ninja**
 - **Python3**
 - **Make sure cmake, clang, clang++ and ninja are in PATH.**
-
+---
+## Use build version for Windows 11
+```
+.\win_11\app.exe --base tests\data\base.csv --log log.log --path .
+```
 ---
 
 ## Build Instructions
@@ -39,6 +43,7 @@ Example for Linux;
 ./build/bin/app --base tests/data/base.csv --log log.log --path .
 ```
 ---
+
 ## Example of output
 ```
 Scan report
