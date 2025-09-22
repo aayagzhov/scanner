@@ -17,7 +17,7 @@ TEST(Base, in_base) {
 TEST(Base, not_in_base) {
     Base base;
     base.load(PROJECT_ROOT + "/tests/data/base.csv"s);
-    EXPECT_EQ(base.get_verdict("8ee70903f43b2274eb971262268af548"), "");
+    EXPECT_FALSE(base.find_hash("8ee70903f43b2274eb971262268af548"));
 }
 
 } // namespace scanner

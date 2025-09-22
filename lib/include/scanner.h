@@ -67,6 +67,7 @@ private:
       if (hash.empty()) {
          std::lock_guard<std::mutex> lock(mtx);
          if (stat) {
+            hash = "################################";
             ++stat->total_files_scanned;
             ++stat->files_failed_to_analyze;
          }
