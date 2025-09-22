@@ -1,6 +1,6 @@
 # File Scanner Utility
 
-This project is a file scanning utility that detects "malicious" files in a specified directory by comparing MD5 hashes against a given database. The project is written in C++ with an object-oriented approach and uses CMake as the build system. Work oly for **Windows** and **Linux**.
+This project is a file scanning utility that detects "malicious" files in a specified directory by comparing MD5 hashes against a given database. The project is written in C++ with an object-oriented approach and uses CMake as the build system. Work oly for **Windows** and **Ubuntu**.
 
 ## Prerequisites
 
@@ -10,7 +10,7 @@ This project is a file scanning utility that detects "malicious" files in a spec
 - **Ninja** Add `ninja.exe` to your PATH.
 - **Python3** Needed only for GoogleTest discovery. Add `python.exe` to PATH if you want CTest to automatically run tests.
 
-### Linux
+### Ubuntu
 - **CMake**:
 - **Clang**:
 - **Ninja**:
@@ -44,9 +44,9 @@ This project is a file scanning utility that detects "malicious" files in a spec
     ```
 
 5. After building, the following files will be available in `build/`:
-    - `bin/app.exe` (Windows) or `bin/app` (Linux)
-    - `bin/ScannerLib.dll` (Windows) or `bin/libScannerLib.so` (Linux)
-    - `bin/tests.exe` (Windows) or `bin/tests` (Linux)
+    - `bin/app.exe` (Windows) or `bin/app` (Ubuntu)
+    - `bin/libScannerLib.dll` (Windows) or `bin/libScannerLib.so` (Ubuntu)
+    - `bin/tests.exe` (Windows) or `bin/tests` (Ubuntu)
 ---
 
 ## Running
