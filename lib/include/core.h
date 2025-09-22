@@ -14,8 +14,10 @@ using Verdict = std::string;
 using Message = std::string;
 
 struct Stat {
-    Stat();
-    ~Stat();
+    Stat() {}
+    ~Stat() {}
+
+    void drop() const;
 
     size_t elapsed_ms() const;
 

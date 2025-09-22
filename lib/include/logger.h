@@ -13,7 +13,7 @@ public:
 
     explicit Logger() { }
 
-    bool set_output_file(const std::string &file_path);
+    void set_output_file(const std::string &file_path);
 
     void log(const Str &lhs, const Str &med, const Str &rhs);
 

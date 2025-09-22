@@ -9,42 +9,37 @@ namespace fs = std::filesystem;
 namespace scanner {
 
 void Scanner::set_base(const std::string &base_fale) {
-   if (!base) {
-      base.load(base_fale);
-   }
+   base.load(base_fale);
 }
 
 void Scanner::set_log(const std::string &log_file) {
-   if (!logger) {
-      logger.set_output_file(log_file);
-   }
+   logger.set_output_file(log_file);
 }
 
 void Scanner::set_stat(Stat &st) {
    this->stat = &st;
 }
 
-bool Scanner::scan(const std::string &folder_path) {
-   if (!base || !logger) {
-      std::cerr << "Scan error: database or log file not initialized" << std::endl;
-      return false;
+void Scanner::scan(const std::string &folder_path) {
+   if (!base) {
+      throw std::runtime_error("scan error: hash database is not loaded");
    }
+   if (!logger) {
+      throw std::runtime_error("scan error: log file is not provide");
+   }
+
    ThreadPool thread_pool;
-   try {
-      for (const auto& entry : fs::recursive_directory_iterator(folder_path)) {
-         if (entry.is_regular_file()) {
-            std::string file_path = entry.path().string();
-            thread_pool.add_task([this, file_path] {
+
+   for (const auto& entry : fs::recursive_directory_iterator(folder_path)) {
+      if (entry.is_regular_file()) {
+         std::string file_path = entry.path().string();
+         thread_pool.add_task([this, file_path] {
                this->process_file(file_path);
-            });
-         }
+         });
       }
-   } catch (const fs::filesystem_error& e) {
-      std::cerr << "Scan error (file system mistake): " << e.what() << std::endl;
-      return false;
    }
+
    stat->hashed_memory = hasher.get_hashed_memory();
-   return true;
 }
 
 void Scanner::process_file(const std::string &file) {

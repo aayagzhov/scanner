@@ -1,1 +1,1 @@
-.\build\bin\tests
+.\build\bin\tests.exe

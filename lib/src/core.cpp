@@ -2,10 +2,7 @@
 
 namespace scanner {
 
-Stat::Stat() : start_time(std::chrono::steady_clock::now()) { }
-
-Stat::~Stat() {
-   end_time = std::chrono::steady_clock::now();
+void Stat::drop() const {
    std::cout << *this << std::endl;
 }
 

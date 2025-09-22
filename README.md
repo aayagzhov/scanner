@@ -1,59 +1,73 @@
 # File Scanner Utility
 
-This project is a file scanning utility that detects "malicious" files in a specified directory by comparing MD5 hashes against a given database. The project is written in C++ with an object-oriented approach and uses CMake as the build system. Work oly for **Windows** and **Ubuntu**.
+This project is a file scanning utility that detects "malicious" files in a specified directory by comparing MD5 hashes against a given database. The project is written in C++ with an object-oriented approach and uses CMake as the build system. Work only for **Windows** and **Linux**.
 
 ## Prerequisites
 
-### Windows
-- **CMake** Make sure to select "Add CMake to system PATH".
-- **LLVM/Clang** Ensure `clang.exe` and `clang++.exe` are in your system PATH.
-- **Ninja** Add `ninja.exe` to your PATH.
-- **Python3** Needed only for GoogleTest discovery. Add `python.exe` to PATH if you want CTest to automatically run tests.
-
-### Ubuntu
-- **CMake**:
-- **Clang**:
-- **Ninja**:
-- **Python3** (optional, >= 3.7): Needed only for GoogleTest discovery.
-- **Make sure clang, clang++ and ninja are in PATH.**
+### Ubuntu/Windows
+- **CMake**
+- **Clang**
+- **Ninja**
+- **Python3**
+- **Make sure cmake, clang, clang++ and ninja are in PATH.**
 
 ---
 
 ## Build Instructions
 
-1. Clone the repository:
-    ```bash
-    git clone <repository-url>
-    cd <repository-folder>
+1. Create a `build/` directory:
+2. In the `build/` directory run:
     ```
-
-2. Create a build directory:
-    ```bash
-    mkdir build
-    cd build
-    ```
-
-3. Configure the project with CMake:
-    ```bash
-    cmake -G "Ninja" -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ ..
-    ```
-
-4. Build the project:
-    ```bash
+    cmake -G "Ninja" ..
     cmake --build .
     ```
+Or just run the script: `build.cmd (.sh)`.
 
-5. After building, the following files will be available in `build/`:
-    - `bin/app.exe` (Windows) or `bin/app` (Ubuntu)
-    - `bin/libScannerLib.dll` (Windows) or `bin/libScannerLib.so` (Ubuntu)
-    - `bin/tests.exe` (Windows) or `bin/tests` (Ubuntu)
+After building, the following files will be available in `build/`:
+- `bin/app.exe` (Windows) or `bin/app` (Linux)
+- `bin/libScannerLib.dll` (Windows) or `bin/libScannerLib.so` (Linux)
+- `bin/tests.exe` (Windows) or `./bin/tests` (Linux)
 ---
 
-## Running
-
+## Running App
+Example for Windows;
+```
+.\build\bin\app.exe --base tests\data\base.csv --log log.log --path .
+```
+Example for Linux;
+```
 ./build/bin/app --base tests/data/base.csv --log log.log --path .
-
-.\build\bin\app --base tests\data\base.csv --log log.log --path .
-
+```
 ---
-## Example
+## Example of output
+```
+Scan report
+-----------
+Root path:        .
+Database file:    tests/data/base.csv
+Log file:         log.log
+
+Total files scanned:           724
+Malicious files found:         1
+Files failed to analyze:       0
+Elapsed time:                  00:00:00.286
+Total data hashed:             830 KB 
+```
+## Running test
+Example for Windows;
+```
+.\build\bin\tests.exe
+```
+Example for Linux;
+```
+./build/bin/tests
+```
+
+just run the script: `./run_tests.cmd (.sh)`.
+
+## Logging
+The scanner writes logs to the file specified at startup:
+```
+80498e2eb9baa5af90d7a266dfa72be9;Hash not in base;./lib/include/logger.h
+3687b16d5bafd9e44f27afa06d50d8b3;Hash not in base;./lib/CMakeLists.txt
+```

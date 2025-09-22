@@ -21,7 +21,7 @@ public:
 
    void set_stat(Stat &st);
 
-   bool scan(const std::string &folder_path);
+   void scan(const std::string &folder_path);
 
 private:
    void process_file(const std::string &file);
