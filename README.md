@@ -1,22 +1,19 @@
 # File Scanner Utility
 
-This project is a file scanning utility that detects "malicious" files in a specified directory by comparing MD5 hashes against a given database. The project is written in C++ with an object-oriented approach and uses CMake as the build system.
+This project is a file scanning utility that detects "malicious" files in a specified directory by comparing MD5 hashes against a given database. The project is written in C++ with an object-oriented approach and uses CMake as the build system. Work oly for **Windows** and **Linux**.
 
 ## Prerequisites
 
 ### Windows
-- **CMake** (>= 3.20): [Download](https://cmake.org/download/)  
-  Make sure to select "Add CMake to system PATH".
-- **LLVM/Clang**: [Download](https://llvm.org/builds/)  
-  Ensure `clang.exe` and `clang++.exe` are in your system PATH.
-- **Ninja**: [Download](https://github.com/ninja-build/ninja/releases)  
-  Add `ninja.exe` to your PATH.
-- **Python3** (optional, >= 3.7): Needed only for GoogleTest discovery. Add `python.exe` to PATH if you want CTest to automatically run tests.
+- **CMake** Make sure to select "Add CMake to system PATH".
+- **LLVM/Clang** Ensure `clang.exe` and `clang++.exe` are in your system PATH.
+- **Ninja** Add `ninja.exe` to your PATH.
+- **Python3** Needed only for GoogleTest discovery. Add `python.exe` to PATH if you want CTest to automatically run tests.
 
 ### Linux
-- **CMake**: Install via your package manager, e.g., `sudo apt install cmake`.
-- **Clang**: Install via your package manager, e.g., `sudo apt install clang`.
-- **Ninja**: Install via your package manager, e.g., `sudo apt install ninja-build`.
+- **CMake**:
+- **Clang**:
+- **Ninja**:
 - **Python3** (optional, >= 3.7): Needed only for GoogleTest discovery.
 - **Make sure clang, clang++ and ninja are in PATH.**
 
@@ -47,25 +44,16 @@ This project is a file scanning utility that detects "malicious" files in a spec
     ```
 
 5. After building, the following files will be available in `build/`:
-    - `app/app.exe` (Windows) or `app/app` (Linux)
-    - `lib/ScannerLib.dll` (Windows) or `lib/libScannerLib.so` (Linux)
-    - `tests/tests.exe` (Windows) or `tests/tests` (Linux)
-
-> **Note:** On Windows, make sure `ScannerLib.dll` is in the same folder as `app.exe` and `tests.exe` when running.
-
+    - `bin/app.exe` (Windows) or `bin/app` (Linux)
+    - `bin/ScannerLib.dll` (Windows) or `bin/libScannerLib.so` (Linux)
+    - `bin/tests.exe` (Windows) or `bin/tests` (Linux)
 ---
 
-## Verify Components
+## Running
 
-After building, ensure all components are present:
+./build/bin/app --base tests/data/base.csv --log log.log --path .
 
-```bash
-# Windows
-dir build\app
-dir build\lib
-dir build\tests
+.\build\bin\app --base tests\data\base.csv --log log.log --path .
 
-# Linux
-ls build/app
-ls build/lib
-ls build/tests
+---
+## Example

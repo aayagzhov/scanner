@@ -48,5 +48,3 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
-
-//./build/app/app --base tests/data/base.csv --log log.log  --path ./
