@@ -43,6 +43,7 @@ bool Scanner::scan(const std::string &folder_path) {
       std::cerr << "Scan error (file system mistake): " << e.what() << std::endl;
       return false;
    }
+   stat->hashed_memory = hasher.get_hashed_memory();
    return true;
 }
 

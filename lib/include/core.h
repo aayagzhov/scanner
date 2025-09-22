@@ -23,9 +23,10 @@ struct Stat {
     std::string base_file;
     std::string log_file;
 
-    size_t total_files_scanned = 0;
-    size_t malicious_files_found = 0;
-    size_t files_failed_to_analyze = 0;
+    size_t total_files_scanned{0};
+    size_t malicious_files_found{0};
+    size_t files_failed_to_analyze{0};
+    uint64_t hashed_memory{0ull};
 
     std::chrono::steady_clock::time_point start_time{};
     std::chrono::steady_clock::time_point end_time{};

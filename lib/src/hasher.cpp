@@ -8,7 +8,7 @@
 
 namespace scanner {
 
-std::pair<Hash, Message> Hasher::find_hash(const std::string &file_path) const {
+std::pair<Hash, Message> Hasher::find_hash(const std::string &file_path) {
     std::ifstream file(file_path, std::ios::in | std::ios::binary);
 
     if (!file) {
@@ -20,6 +20,7 @@ std::pair<Hash, Message> Hasher::find_hash(const std::string &file_path) const {
     do {
         file.read(reinterpret_cast<char*>(buffer.data()), BUFF_SIZE);
         uint64_t len = file.gcount();
+        hashed_memory += len;
         md5.update(buffer.data(), file.gcount());
     } while(file);
 

@@ -13,14 +13,8 @@ bool Logger::set_output_file(const std::string &file_path) {
     return active;
 }
 
-bool Logger::log(const Str &lhs, const Str &med, const Str &rhs)  {
-    if (!file.is_open()) {
-        return false;
-    }
-
+void Logger::log(const Str &lhs, const Str &med, const Str &rhs) {
     file << lhs << ";" << med << ";" << rhs << "\n";
-    file.flush();
-    return true;
 }
 
 } // namespace scanner

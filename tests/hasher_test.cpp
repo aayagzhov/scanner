@@ -6,10 +6,16 @@ using namespace std::string_literals;
 
 namespace scanner {
 
-TEST(Hasher, txt) {
+TEST(Hasher, txt_32768_bytes) {
     Hasher hasher;
-    auto hash = hasher.find_hash(PROJECT_ROOT + "/tests/data/data.txt"s).first;
+    auto hash = hasher.find_hash(PROJECT_ROOT + "/tests/data/data_32768.txt"s).first;
     EXPECT_EQ(hash, "2f491205caf3e5eb0c76d11a04bef635");
+}
+
+TEST(Hasher, txt_4159_bytes) {
+    Hasher hasher;
+    auto hash = hasher.find_hash(PROJECT_ROOT + "/tests/data/data_4159.txt"s).first;
+    EXPECT_EQ(hash, "95611f4c4fba8c559fe86bdef1414918");
 }
 
 TEST(Hasher, webp) {

@@ -15,7 +15,7 @@ public:
 
     bool set_output_file(const std::string &file_path);
 
-    bool log(const Str &lhs, const Str &med, const Str &rhs);
+    void log(const Str &lhs, const Str &med, const Str &rhs);
 
     explicit operator bool() const noexcept {
         return active;

@@ -45,7 +45,8 @@ inline std::ostream& operator<<(std::ostream& os, const Stat& stat) {
     os << "Total files scanned:           " << stat.total_files_scanned << '\n'
        << "Malicious files found:         " << stat.malicious_files_found << '\n'
        << "Files failed to analyze:       " << stat.files_failed_to_analyze << '\n'
-       << "Elapsed time:                  " << format_elapsed_ms(stat.elapsed_ms()) << '\n';
+       << "Elapsed time:                  " << format_elapsed_ms(stat.elapsed_ms()) << '\n'
+       << "Total data hashed:             " << (stat.hashed_memory >> 10) << " KB "<<'\n';
 
     return os;
 }
