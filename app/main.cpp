@@ -43,9 +43,9 @@ int main(int argc, char* argv[]) {
         std::cerr << "Usage: app --base <*.cvs> --log <*.log> --path <path_to_folder>" << std::endl;
         return 1;
     }
-    stat.folder_path = std::filesystem::absolute(folder).string();
-    stat.base_file = std::filesystem::absolute(base_file).string();
-    stat.log_file  = std::filesystem::absolute(log_file).string();
+    stat.folder_path = folder;
+    stat.base_file = base_file;
+    stat.log_file  = log_file;
 
     try {
         scanner::Scanner scanner;
@@ -56,6 +56,7 @@ int main(int argc, char* argv[]) {
         stat.drop();
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
+        stat.drop();
         return 1;
     }
     return 0;

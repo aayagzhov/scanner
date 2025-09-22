@@ -14,7 +14,7 @@ using Verdict = std::string;
 using Message = std::string;
 
 struct Stat {
-    Stat() {}
+    Stat() { start_time = std::chrono::steady_clock::now; }
     ~Stat() {}
 
     void drop() const;

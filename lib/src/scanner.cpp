@@ -30,20 +30,24 @@ void Scanner::scan(const std::string &folder_path) {
 
    ThreadPool thread_pool;
 
-   for (const auto& entry : fs::recursive_directory_iterator(folder_path)) {
-      if (entry.is_regular_file()) {
-         std::string file_path = entry.path().string();
+   for (auto it = fs::recursive_directory_iterator(folder_path, fs::directory_options::skip_permission_denied);
+        it != fs::recursive_directory_iterator(); ++it)  {
+      if (it->is_symlink()) {
+         it.disable_recursion_pending(); 
+         continue;
+      }
+
+      if (it->is_regular_file()) {
+         std::string file_path = it->path().string();
          thread_pool.add_task([this, file_path] {
-               this->process_file(file_path);
+            this->process_file(file_path);
          });
       }
    }
-
-   stat->hashed_memory = hasher.get_hashed_memory();
 }
 
 void Scanner::process_file(const std::string &file) {
-   auto [hash, verdict] = hasher.find_hash(file);
+   auto [hash, verdict, mem] = hasher.find_hash(file);
    bool in_base{base.find_hash(hash)};
    Verdict base_verdict = in_base ? base.get_verdict(hash) : " ";
 
@@ -53,6 +57,7 @@ void Scanner::process_file(const std::string &file) {
          hash = "################################";
          ++stat->total_files_scanned;
          ++stat->files_failed_to_analyze;
+         stat.hashed_memory + mem;
       }
       logger.log(hash, verdict, file);
    } else {
@@ -63,6 +68,7 @@ void Scanner::process_file(const std::string &file) {
       if (stat) {
          ++stat->total_files_scanned;
          stat->malicious_files_found += count;
+         stat.hashed_memory + mem;
       }
       logger.log(hash, verdict, file);
    }

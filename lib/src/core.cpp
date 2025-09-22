@@ -1,8 +1,12 @@
 #include "core.h"
 
+#include <sstream>
+#include <iomanip>
+
 namespace scanner {
 
 void Stat::drop() const {
+   end_time = std::chrono::steady_clock::now;
    std::cout << *this << std::endl;
 }
 
@@ -33,8 +37,9 @@ std::string format_elapsed_ms(size_t ms_total) {
 }
 
 inline std::ostream& operator<<(std::ostream& os, const Stat& stat) {
-    os << "Scan report\n"
-       << "-----------\n"
+    os << "---------------------------------------------------\n"
+       << "Scan report\n"
+       << "---------------------------------------------------\n"
        << "Root path:        " << stat.folder_path << '\n'
        << "Database file:    " << stat.base_file << '\n'
        << "Log file:         " << stat.log_file << "\n\n";
