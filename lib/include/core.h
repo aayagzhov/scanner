@@ -1,9 +1,11 @@
 #pragma once
 
-#include <string>
+#include "export.h"
+
 #include <chrono>
 #include <iomanip>
 #include <iostream>
+#include <string>
 
 namespace scanner {
 

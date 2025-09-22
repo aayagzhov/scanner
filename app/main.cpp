@@ -1,4 +1,5 @@
 #include <scanner.h>
+#include <core.h>
 
 #include <iostream>
 #include <string>

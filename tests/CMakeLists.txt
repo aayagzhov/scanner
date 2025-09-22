@@ -11,13 +11,6 @@ file(GLOB_RECURSE SRC_FILES
 
 add_executable(tests ${SRC_FILES})
 
-#target_include_directories(tests
-#    PRIVATE
-#        ${CMAKE_SOURCE_DIR}/lib/include
-#        ${gtest_SOURCE_DIR}/include
-#        ${gtest_BINARY_DIR}/include
-#)
-
 target_link_libraries(tests PRIVATE ScannerLib gtest_main)
 
 add_custom_command(TARGET tests POST_BUILD
@@ -25,7 +18,6 @@ add_custom_command(TARGET tests POST_BUILD
         $<TARGET_FILE:ScannerLib>
         $<TARGET_FILE_DIR:tests>
 )
-
 
 include(GoogleTest)
 gtest_discover_tests(tests)
