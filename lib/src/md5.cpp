@@ -26,24 +26,21 @@ void MD5::update(const uint8_t *data, uint32_t size) {
         data += 64;
         size -= 64;
     }
-    memcpy(remains.data.data(), data, size);
-    remains.size = size;
+    memcpy(buf.data.data(), data, size);
+    buf.size = size;
 }
 
 Hash MD5::finish() {
-    std::array<uint8_t, block_size * 2> data;
-    uint32_t size = remains.size;
-    std::memcpy(data.data(), remains.data.data(), size);
-    data[size++] = 0x80;
-    while ((size & 0b111111) != 56) {
-        data[size++] = 0u;
+    buf.data[buf.size++] = 0x80;
+    while ((buf.size & 0b111111) != 56) {
+        buf.data[buf.size++] = 0u;
     }
-    std::memcpy(data.data() + size, &data_size, sizeof(data_size));
-    size += 8u;
-    assert(size == 64 || size == 128);
-    process_block(data.data());
-    if (size > block_size) {
-        process_block(data.data() + block_size);
+    std::memcpy(buf.data.data() + buf.size, &data_size, sizeof(data_size));
+    buf.size += 8u;
+    assert(buf.size == 64 || buf.size == 128);
+    process_block(buf.data.data());
+    if (buf.size > block_size) {
+        process_block(buf.data.data() + block_size);
     }
     return get_state();
 }

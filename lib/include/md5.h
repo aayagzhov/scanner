@@ -11,8 +11,8 @@ namespace scanner {
 
 class MD5 final {
 public:
-    struct Remains {
-        std::array<uint8_t, 64> data;
+    struct Buffer {
+        std::array<uint8_t, 128> data;
         uint32_t size{0};
     };
 
@@ -61,7 +61,7 @@ private:
     uint32_t d{0};
 
     uint64_t data_size{0};
-    Remains remains;
+    Buffer buf;
 };
 
 } // namespace scanner
