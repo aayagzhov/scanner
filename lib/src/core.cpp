@@ -5,8 +5,8 @@
 
 namespace scanner {
 
-void Stat::drop() const {
-   end_time = std::chrono::steady_clock::now;
+void Stat::drop() {
+   end_time = std::chrono::steady_clock::now();
    std::cout << *this << std::endl;
 }
 

@@ -57,7 +57,7 @@ void Scanner::process_file(const std::string &file) {
          hash = "################################";
          ++stat->total_files_scanned;
          ++stat->files_failed_to_analyze;
-         stat.hashed_memory + mem;
+         stat->hashed_memory += mem;
       }
       logger.log(hash, verdict, file);
    } else {
@@ -68,7 +68,7 @@ void Scanner::process_file(const std::string &file) {
       if (stat) {
          ++stat->total_files_scanned;
          stat->malicious_files_found += count;
-         stat.hashed_memory + mem;
+         stat->hashed_memory += mem;
       }
       logger.log(hash, verdict, file);
    }

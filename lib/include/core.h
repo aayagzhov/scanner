@@ -14,10 +14,9 @@ using Verdict = std::string;
 using Message = std::string;
 
 struct Stat {
-    Stat() { start_time = std::chrono::steady_clock::now; }
-    ~Stat() {}
+    Stat() { start_time = std::chrono::steady_clock::now(); }
 
-    void drop() const;
+    void drop();
 
     size_t elapsed_ms() const;
 
