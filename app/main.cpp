@@ -4,6 +4,7 @@
 #include <string>
 
 int main(int argc, char* argv[]) {
+    scanner::Stat stat;
     std::string base_file;
     std::string log_file;
     std::string folder;
@@ -34,6 +35,10 @@ int main(int argc, char* argv[]) {
         }
     }
 
+    stat.folder_path = folder;
+    stat.base_file = base_file;
+    stat.log_file = log_file;
+
     if (options_count != 3) {
         std::cerr << "Not all options are set" << std::endl;
         std::cerr << "Usage: app --base <*.cvs> --log <*.log> --path <path_to_folder>" << std::endl;
@@ -43,8 +48,8 @@ int main(int argc, char* argv[]) {
     scanner::Scanner scanner;
     scanner.set_base(base_file);
     scanner.set_log(log_file);
+    scanner.set_stat(stat);
     scanner.scan(folder);
-    scanner.print_stat();
 
     return 0;
 }

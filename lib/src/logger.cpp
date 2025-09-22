@@ -5,22 +5,20 @@
 namespace scanner {
 
 bool Logger::set_output_file(const std::string &file_path) {
-    if (file.is_open()) {
+    if (active) {
         return false;
     }
     file.open(file_path, std::ios::out | std::ios::trunc);
-    return file.is_open();
+    active = file.is_open();
+    return active;
 }
 
-bool Logger::log(const std::string file_path, const Hash &hash,
-             const Verdict &verdict) {
-    std::lock_guard<std::mutex> lock(mtx);
-
+bool Logger::log(const Str &lhs, const Str &med, const Str &rhs)  {
     if (!file.is_open()) {
         return false;
     }
 
-    file << file_path << " | " << hash << " | " << verdict << "\n";
+    file << lhs << ";" << med << ";" << rhs << "\n";
     file.flush();
     return true;
 }

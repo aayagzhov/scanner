@@ -12,7 +12,7 @@ std::pair<Hash, Message> Hasher::find_hash(const std::string &file_path) const {
     std::ifstream file(file_path, std::ios::in | std::ios::binary);
 
     if (!file) {
-        return {"", "Can't open input file"};
+        return {"", "Error: cannot open file"};
     }
     MD5 md5;
     static const int BUFF_SIZE = 2048; // take 2 KB of RAM
@@ -24,7 +24,7 @@ std::pair<Hash, Message> Hasher::find_hash(const std::string &file_path) const {
     } while(file);
 
     if(!file.eof()) {
-        return {"", "File read error"};
+        return {"", "Error: read failure in file"};
     }
     return {md5.finish(), ""};
 }

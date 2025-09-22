@@ -10,6 +10,7 @@
 namespace scanner {
 
 void Base::load(const std::string &file_path) {
+    active = true;
     std::ifstream file(file_path, std::ios::in);
     if (!file) {
         std::cerr << file_path << std::endl;
@@ -41,10 +42,7 @@ bool Base::find_hash(const Hash &hash) const {
 }
 
 Verdict Base::get_verdict(const Hash &hash) const {
-    if (data.count(hash)) {
-        return data.at(hash);
-    }
-    return "";
+    return data.at(hash);
 }
 
 } // namespace scanner

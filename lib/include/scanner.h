@@ -10,6 +10,7 @@
 
 #include <filesystem>
 #include <string>
+#include <mutex>
 
 namespace fs = std::filesystem;
 
@@ -20,16 +21,26 @@ public:
    Scanner() {};
 
    void set_base(const std::string &base_fale) {
-      base.load(base_fale);
+      if (!base) {
+         base.load(base_fale);
+      }
    }
 
    void set_log(const std::string &log_file) {
-      logger.set_output_file(log_file);
+      if (!logger) {
+         logger.set_output_file(log_file);
+      }
    }
 
-   void scan(const std::string &folder_path) {
-      auto start = std::chrono::steady_clock::now();
-      {
+   void set_stat(Stat &st) {
+      this->stat = &st;
+   }
+
+   bool scan(const std::string &folder_path) {
+      if (!base || !logger) {
+         std::cerr << "Scan error: database or log file not initialized" << std::endl;
+         return false;
+      }
       ThreadPool thread_pool;
       try {
          for (const auto& entry : fs::recursive_directory_iterator(folder_path)) {
@@ -41,32 +52,47 @@ public:
             }
          }
       } catch (const fs::filesystem_error& e) {
-         std::cerr << "Ошибка файловой системы: " << e.what() << std::endl;
+         std::cerr << "Scan error (file system mistake): " << e.what() << std::endl;
+         return false;
       }
-      }
-      auto end = std::chrono::steady_clock::now();
-      auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-      stat.time = duration.count();
-   }
-
-   void print_stat() const {
-      std::cout << stat << std::endl;
+      return true;
    }
 
 private:
    void process_file(const std::string &file) {
       auto [hash, verdict] = hasher.find_hash(file);
-      if (base.find_hash(hash)) {
-         verdict = base.get_verdict(hash);
+      bool in_base{base.find_hash(hash)};
+      Verdict base_verdict = in_base ? base.get_verdict(hash) : " ";
+
+      if (hash.empty()) {
+         std::lock_guard<std::mutex> lock(mtx);
+         if (stat) {
+            ++stat->total_files_scanned;
+            ++stat->files_failed_to_analyze;
+         }
+         logger.log(file, hash, verdict);
+      } else {
+         std::lock_guard<std::mutex> lock(mtx);
+         size_t count{0};
+         verdict = "Hash not in base";
+         if (in_base) {
+            verdict = base_verdict;
+            ++count;
+         }
+         if (stat) {
+            ++stat->total_files_scanned;
+            stat->malicious_files_found += count;
+         }
+         logger.log(hash, verdict, file);
       }
-      //stat + stat
-      logger.log(file, hash, verdict);
    }
 
    Base base;
-   Stat stat;
    Logger logger;
    Hasher hasher;
+   Stat *stat{nullptr};
+
+   std::mutex mtx;
 };
 
 } // namespace scanner

@@ -3,22 +3,26 @@
 #include "core.h"
 
 #include <string>
-#include <mutex>
 #include <fstream>
 
 namespace scanner {
 
 class Logger final {
 public:
+    using Str = std::string;
+
     explicit Logger() { }
 
     bool set_output_file(const std::string &file_path);
 
-    bool log(const std::string file_path, const Hash &hash,
-             const Verdict &cerdict);
+    bool log(const Str &lhs, const Str &med, const Str &rhs);
+
+    explicit operator bool() const noexcept {
+        return active;
+    }
 
 private:
-    std::mutex mtx;
+    bool active{false};
     std::fstream file;
 };
 

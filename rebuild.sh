@@ -1,2 +1,2 @@
 cd build;
-make -j12;
+cmake --build .;
