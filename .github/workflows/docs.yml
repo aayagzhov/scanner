@@ -1,28 +1,44 @@
-name: Documentation
+name: Deploy Documentation
+
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    paths: ['lib/include/**', 'Doxyfile']
 
 jobs:
-  docs:
+  deploy-docs:
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
       
-      - name: Setup Doxygen
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y doxygen graphviz
-          
-      - name: Generate Documentation
-        run: |
-          doxygen Doxyfile
-          
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/html
-          force_orphan: true
+    - name: Setup Doxygen
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y doxygen graphviz
+        
+    - name: Generate Documentation
+      run: |
+        doxygen Doxyfile
+        
+    - name: Prepare gh-pages branch
+      run: |
+        git checkout --orphan gh-pages
+        git reset --hard
+        
+    - name: Copy documentation to root
+      run: |
+        # Копируем документацию в корень
+        cp -r docs/html/* .
+        # Создаем .nojekyll чтобы GitHub не обрабатывал файлы
+        touch .nojekyll
+        
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        force_orphan: true
