@@ -1,0 +1,19 @@
+<map id="lib/include/export.h" name="lib/include/export.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="437,5,584,31"/>
+<area shape="rect" id="Node000002" href="$core_8h.html" title="Core types, structures, and utilities for the scanner." alt="" coords="309,79,443,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="478,39,399,81,397,76,476,35"/>
+<area shape="rect" id="Node000004" href="$scanner_8h.html" title="Main scanner class for file system scanning and malware detection." alt="" coords="213,225,368,251"/>
+<area shape="poly" id="edge10_Node000001_Node000004" title=" " alt="" coords="561,33,622,57,681,91,704,111,718,132,720,155,707,179,684,196,651,210,562,228,460,237,368,240,368,234,460,232,561,223,649,205,682,192,703,176,715,154,713,134,700,114,678,95,620,62,559,38"/>
+<area shape="rect" id="Node000003" href="$base_8h.html" title="Malware hash database management." alt="" coords="5,152,141,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="315,110,123,154,122,149,314,104"/>
+<area shape="poly" id="edge9_Node000002_Node000004" title=" " alt="" coords="296,103,246,120,224,135,206,153,202,164,202,173,215,192,238,209,264,223,261,227,235,214,211,196,197,175,196,163,202,151,221,130,244,115,295,98"/>
+<area shape="rect" id="Node000005" href="$hasher_8h.html" title="File hashing interface." alt="" coords="217,152,365,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="354,115,306,154,303,150,350,110"/>
+<area shape="rect" id="Node000006" href="$logger_8h.html" title="Logging facility for scan operations." alt="" coords="389,152,534,177"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="402,110,449,150,446,154,398,115"/>
+<area shape="rect" id="Node000007" href="$md5_8h.html" title="MD5 hash algorithm implementation." alt="" coords="558,152,693,177"/>
+<area shape="poly" id="edge8_Node000002_Node000007" title=" " alt="" coords="430,105,586,149,584,154,429,110"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="122,179,256,223,255,228,120,184"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="293,191,293,225,288,225,288,191"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="422,185,320,228,318,223,420,180"/>
+</map>

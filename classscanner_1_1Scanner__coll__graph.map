@@ -1,0 +1,35 @@
+<map id="scanner::Scanner" name="scanner::Scanner">
+<area shape="rect" id="Node000001" title="Main scanner class that orchestrates file scanning and analysis." alt="" coords="243,667,376,692"/>
+<area shape="rect" id="Node000002" href="$classscanner_1_1Base.html" title="Malware hash database loader and query interface." alt="" coords="30,579,143,604"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,612,122,628,140,640,191,660,243,670,242,676,189,665,137,645,118,632,102,616"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,465,157,505"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="86,519,89,578,83,578,80,519"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="78,341,165,366"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="111,379,103,398,87,466,81,464,97,396,106,377"/>
+<area shape="rect" id="Node000015" href="$structscanner_1_1Stat.html" title="Statistics collection for scan operations." alt="" coords="140,529,247,555"/>
+<area shape="poly" id="edge16_Node000015_Node000004" title=" " alt="" coords="150,374,168,396,182,432,191,470,196,529,191,529,186,471,177,434,163,399,146,377"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="52,244,191,284"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="124,298,124,340,119,340,119,298"/>
+<area shape="rect" id="Node000006" href="$classscanner_1_1Logger.html" title="Provides logging functionality for scan operations." alt="" coords="247,579,372,604"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="312,618,312,666,307,666,307,618"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="259,473,360,498"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="312,512,312,578,307,578,307,512"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="238,333,381,373"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="312,387,312,473,307,473,307,387"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="235,244,384,284"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="312,298,312,333,307,333,307,298"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="139,155,280,195"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="243,202,289,242,286,246,240,206"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="207,80,377,105"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="272,117,231,157,227,153,268,113"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="305,155,450,195"/>
+<area shape="poly" id="edge13_Node000013_Node000011" title=" " alt="" coords="316,113,359,153,355,157,312,116"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="239,5,345,31"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="295,45,295,80,289,80,289,45"/>
+<area shape="poly" id="edge12_Node000009_Node000013" title=" " alt="" coords="356,207,326,246,322,242,352,204"/>
+<area shape="rect" id="Node000014" href="$classscanner_1_1Hasher.html" title="Find MD&#45;5 hash for input file." alt="" coords="397,579,523,604"/>
+<area shape="poly" id="edge14_Node000001_Node000014" title=" " alt="" coords="429,613,331,669,328,664,427,609"/>
+<area shape="poly" id="edge15_Node000001_Node000015" title=" " alt="" coords="197,568,200,586,208,603,224,623,244,640,285,664,282,669,241,644,220,626,203,605,195,587,191,569"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="547,579,639,604"/>
+<area shape="poly" id="edge17_Node000001_Node000016" title=" " alt="" coords="551,611,450,645,360,669,358,664,449,640,549,606"/>
+</map>

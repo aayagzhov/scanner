@@ -1,0 +1,18 @@
+<map id="lib/include/logger.h" name="lib/include/logger.h">
+<area shape="rect" id="Node000001" title="Logging facility for scan operations." alt="" coords="319,5,464,31"/>
+<area shape="rect" id="Node000002" href="$core_8h.html" title="Core types, structures, and utilities for the scanner." alt="" coords="253,79,316,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="376,33,315,73,312,69,373,28"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="399,152,458,177"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="397,30,425,138,420,139,392,32"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="429,79,503,104"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="405,29,446,67,442,71,401,33"/>
+<area shape="rect" id="Node000003" href="$export_8h.html" title=" " alt="" coords="5,152,81,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="254,104,95,151,94,146,252,99"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="106,152,173,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="262,106,176,148,174,144,260,102"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="197,152,271,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="278,106,252,142,248,139,274,103"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="295,152,375,177"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="295,103,321,139,317,142,291,106"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="309,102,394,143,392,148,307,106"/>
+</map>
