@@ -75,7 +75,7 @@ void MD5::process_block(const uint32_t *data) {
         uint32_t f = func[step](bb, cc, dd);
         auto id_p = index_params[step];
         uint32_t id = (i * id_p.first + id_p.second) & 0b1111;
-        f = f + aa + t[i] + data[id] + 3u;
+        f = f + aa + t[i] + data[id];
         aa = dd;
         dd = cc;
         cc = bb;
