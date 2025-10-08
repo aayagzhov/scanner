@@ -8,8 +8,8 @@ namespace fs = std::filesystem;
 
 namespace scanner {
 
-void Scanner::set_base(const std::string &base_fale) {
-   base.load(base_fale);
+void Scanner::set_base(const std::string &base_file) {
+   base.load(base_file);
 }
 
 void Scanner::set_log(const std::string &log_file) {
