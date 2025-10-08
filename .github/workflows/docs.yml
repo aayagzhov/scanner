@@ -3,11 +3,12 @@ name: Deploy Documentation
 on:
   push:
     branches: [ main ]
-    paths: ['lib/include/**', 'Doxyfile']
 
 jobs:
   deploy-docs:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     
     steps:
     - name: Checkout code
@@ -24,21 +25,9 @@ jobs:
       run: |
         doxygen Doxyfile
         
-    - name: Prepare gh-pages branch
-      run: |
-        git checkout --orphan gh-pages
-        git reset --hard
-        
-    - name: Copy documentation to root
-      run: |
-        # Копируем документацию в корень
-        cp -r docs/html/* .
-        # Создаем .nojekyll чтобы GitHub не обрабатывал файлы
-        touch .nojekyll
-        
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: gh-pages
+        publish_dir: ./docs/html
         force_orphan: true
